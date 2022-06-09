@@ -1,35 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Alert, SafeAreaView, Image, ImageBackground  } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './App/screens/LoginScreen';
+import OTPScreen from './App/screens/OTPScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 
+const Stack = createStackNavigator();
 
-export default function App() {
-  return (
-    <LoginScreen/>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#1F1D1E',
-  },
-}); 
-
-const MyStack = () => {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="LoginScreen"
-          component={LoginScreen}
-          options={{ title: 'Welcome' }}
-        />
-        <Stack.Screen name="OTP" component={OTPScreen} />
+        <Stack.Screen name= "LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="OTPScreen" component={OTPScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
+
+export default App;

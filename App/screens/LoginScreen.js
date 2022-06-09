@@ -6,8 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/stack';
 
 
-function LoginScreen(props) {
-  const { navigate } = props.NavigationContainer.navigate;
+function LoginScreen({ navigation }) {
 
     return (
   <HideKeyboard>
@@ -30,7 +29,7 @@ function LoginScreen(props) {
         <View style={styles.viewButtonContainer}>
              <TouchableOpacity
                 style={styles.loginScreenButton}
-                onPress={() => navigate('OTPScreen')}>
+                onPress={() =>  navigation.navigate('OTPScreen')}>
                 <Text style={styles.loginText}>Sign In</Text>
              </TouchableOpacity>
          </View>
