@@ -4,6 +4,7 @@ import LoginScreen from './App/screens/LoginScreen';
 import OTPScreen from './App/screens/OTPScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import HomeScreen from './App/screens/HomeScreen';
 
 
 const Stack = createStackNavigator();
@@ -14,6 +15,7 @@ const App = () => {
       <Stack.Navigator>
         <Stack.Screen name= "LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen name="OTPScreen" component={OTPScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
