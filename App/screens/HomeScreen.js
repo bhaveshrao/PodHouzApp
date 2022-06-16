@@ -1,9 +1,90 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, View, Text, Button, TouchableOpacity, Image, TouchableWithoutFeedback, ScrollView ,KeyboardAvoidingView} from 'react-native';
+import { ImageBackground, StyleSheet, View, Text, Button, TouchableOpacity, Image, TouchableWithoutFeedback, ScrollView ,FlatList} from 'react-native';
 import { Feather, Entypo } from "@expo/vector-icons";
 import SearchBar from "react-native-dynamic-search-bar";
 import LeftToBeHeardComponent from './Component/Home/LeftToBeHeardComponent';
+import SmartTalkComponent from './Component/Home/SmartTalkComponent';
+import PotentialAlliessComponent from './Component/Home/PotentialAlliessComponent';
+
+const DATA = [
+    {
+      id: "1",
+      titleA: "Counter Clock",
+      imageUserA: require('../assets/Home/smartTalkUser1.png')
+    },
+    {
+      id: "2",
+      titleA: "Dateline NBC",
+      imageUserA:require('../assets/Home/smartTalkUser2.png')
+
+    },
+    {
+      id: "3",
+      titleA: "A True Podcast",
+      imageUserA:require('../assets/Home/smartTalkUser3.png')
+
+
+    },
+    {
+      id: "4",
+      titleA: "Crime Junkie",
+      imageUserA:require('../assets/Home/smartTalkUser4.png')
+
+    }
+]
+const PotentialData = [
+    {
+      id: "1",
+      title: "Faded",
+      subTitle:"Alan Walker",
+      imageUserA: require('../assets/Home/potentialImage1.png')
+    },
+    {
+      id: "2",
+      title: "Press start",
+      subTitle:"MDK",
+      imageUserA:require('../assets/Home/potentialImage2.png')
+
+    },
+    {
+      id: "3",
+      title: "Time Lapse",
+      subTitle:"Alan Walker",
+      imageUserA:require('../assets/Home/potentialImage3.png')
+    }
+]
 function HomeScreen(props) {
+
+    const renderItem = ({ item }) => (
+        <SmartTalkComponent
+            imageUserSmartTalk = {item.imageUserA}
+            name = {item.titleA}
+            playWhiteIcon = {require('../assets/Home/playWhite.png')}
+            waveIcon = {require('../assets/Home/wave.png')}
+        ></SmartTalkComponent>
+      );
+
+      const renderItemAlliess = ({ item }) => (
+
+            <View style={{height:90,width:'90%',backgroundColor:'#EFEFFF',borderRadius:20,left:9,margin:7,flexDirection:'row',alignItems:'center',overflow:'hidden'}}>
+            <Image
+               style={{width:70,height:'100%',position:'absolute',flex:1}}
+               source={item.imageUserA}
+               resizeMode={'contain'}/>
+               <View style={{height:65,width:'73%',left:80,flexDirection:'row',alignItems:'center'}}>
+                   <View style={{height:65,flexDirection:'column'}}>
+                      <Text style={{fontSize:17,fontWeight:'bold',top:10}}>{item.title}</Text>
+                      <Text style={{fontSize:17,top:10}}>{item.subTitle}</Text>
+                  </View>
+                  <TouchableOpacity
+                      style={{backgroundColor:'#2C271D',width:100,height:30,left:50,alignItems:'center',justifyContent:'center',borderRadius:20}}
+                      onPress={() => navigate('HomeScreen')}
+                      underlayColor='#fff'>
+                      <Text style={{color:'white',fontWeight:'bold'}}>Follow</Text>
+                  </TouchableOpacity>
+               </View>
+      </View>
+      );
     return (
         <View style={styles.container}>
             <View style = {styles.topContainerView}>
@@ -13,9 +94,9 @@ function HomeScreen(props) {
             <Text style={styles.nameText}>Nestor Jerez</Text>
             <Image style={styles.userImage} source={require('../assets/Home/userImage.png')}/>
             <Image style={styles.statusImage} source={require('../assets/Home/onlineIcon.png')}/>
-        <View style={styles.rect}> 
-        <ScrollView scrollEventThrottle={16} style={styles.scrollViewContainer} automaticallyAdjustContentInsets = {true}>
-            <View style={ {height : 1000, width:'100%'}}>
+            <View style={styles.rect}> 
+                <ScrollView scrollEventThrottle={16} style={styles.scrollViewContainer} automaticallyAdjustContentInsets = {true}>
+            <View style={ {height : 2000, width:'100%'}}>
               <SearchBar
                 source = {require('../assets/Home/Rectangle.png')}
                 style={styles.searchBarStyle}
@@ -52,7 +133,12 @@ function HomeScreen(props) {
                             </TouchableWithoutFeedback>
                             <TouchableWithoutFeedback>
                                 <Image
-                                   style={styles.liveButoon}
+                                   style={{
+                                    left : 80,
+                                    marginLeft : 10,
+                                    width:80,
+                                    height:27
+                                   }}
                                    source={require('../assets/Home/debate.png')}
                                    resizeMode={'contain'}/>
                             </TouchableWithoutFeedback>
@@ -86,14 +172,20 @@ function HomeScreen(props) {
                         <TouchableWithoutFeedback >
                                 <Image
                                     style={styles.groupButon}
-                                    source={require('../assets/Home/group.png')}
+                                    source={require('../assets/Home/noOneToOne.png')}
                                     resizeMode={'contain'}/>
                         </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback >
-                                <Image
-                                    style={styles.peopleButon}
-                                    source={require('../assets/Home/people.png')}
-                                    resizeMode={'contain'}/>
+                        <TouchableWithoutFeedback>
+                            <Image 
+                                style={{
+                                    width : 30,
+                                    height : 40,
+                                    left : 250,
+                                    position : 'absolute'
+                                }}
+                                source={require('../assets/Home/Vector.png')}
+                                resizeMode={'contain'}
+                            />
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback >
                                 <Image
@@ -127,15 +219,130 @@ function HomeScreen(props) {
                                 playIcon={require('../assets/Home/play.png')}/>
                     </ScrollView>
                 </View>
-                    <View style={{height:50,width:'90%',top:440,flexDirection:'row',alignItems:'center',left:30}}>
+                    <View style={{height:50,width:'95%',top:440,flexDirection:'row',alignItems:'center',left:20}}>
                         <Text style={{fontSize:18,fontWeight:'bold'}}>Small Talks</Text>
                         <TouchableWithoutFeedback >
                                <Text style={{fontSize:15,marginLeft:'50%'}}>Listen All</Text>
                         </TouchableWithoutFeedback>
+                        <FlatList style={{height:220, top:50,width:'100%',flex:1,position:'absolute',left:-10}} 
+                                      contentContainerStyle={{ paddingVertical: 11 }}
+                                      data={DATA}
+                                      numColumns={2}
+                                      renderItem={renderItem}
+                                        keyExtractor={item => item.id}
+                                      >
+                        </FlatList>
+                    </View>
+                    <View style={{height:50,width:'95%',top:635,flexDirection:'row',alignItems:'center',left:20}}>
+                        <Text style={{fontSize:18,fontWeight:'bold'}}>Potential Alliess</Text>
+                        <TouchableWithoutFeedback >
+                               <Text style={{fontSize:15,marginLeft:'35%'}}>Listen All</Text>
+                        </TouchableWithoutFeedback>
+                    <FlatList style={{height:410, top:50,width:'100%',flex:1,position:'absolute',left:-10}} 
+                                      data={PotentialData}
+                                      numColumns={1}
+                                      renderItem={renderItemAlliess}
+                                    keyExtractor={item => item.id}
+                                      >
+                    </FlatList>
                     </View>
                 </View>
-            </ScrollView>
-         </View>
+
+                <View style={styles.footerContainerView}>
+                    <View style={styles.userCounterContainer}>
+                         <View style={styles.viewUserImageCounter}>
+                             <Image
+                                    style={{width:46,height:46}}
+                                    source={require('../assets/Home/Austin.png')}
+                                    resizeMode={'contain'}/>
+                            <View style={{height:50,width:'80%',left:10,justifyContent:'center'}}>
+                                 <Text numberOfLines={1} style={{fontSize : 17, fontWeight : 'bold',left : 10,  width : 190}}>Austin</Text>
+                                <Text numberOfLines={1} style={{fontSize : 13,left : 10,  width : 190,color:'#827F93'}}>Tue,15-05-2022 23:17PM</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <ImageBackground 
+                    style={styles.soundBackgroundimage} 
+                    source={require('../assets/Home/micImage.png')}
+                    imageStyle={{ borderRadius: 15}}>
+                    </ImageBackground>
+                    <View opacity={0.8} style={styles.bottomContainerView}>
+                        <View style={{
+                               height : 50,
+                               width : 50,
+                               left : 10,
+                               top:12,
+                               position : 'absolute',
+                               alignItems : 'center',
+                        }}>
+                            <TouchableWithoutFeedback >
+                                <Image
+                                    style={{
+                                        width : 25,
+                                        height: 25,     
+                                        margin : -5
+                                    }}
+                                    source={require('../assets/Home/heart.png')}
+                                    resizeMode={'contain'}/>
+                            </TouchableWithoutFeedback>
+                            <Text style={{marginVertical:10}}> 2000 </Text>
+                        </View>
+                        <View style={styles.audioChatContainer}>
+                            <TouchableWithoutFeedback >
+                                <Image
+                                    style={{ top : 1,
+                                        width : 30,
+                                        height: 30}}
+                                    source={require('../assets/Home/headset.png')}
+                                    resizeMode={'contain'}/>
+                            </TouchableWithoutFeedback>
+                            <Text style={{marginTop : -1}}> 100 </Text>
+                        </View>
+                        <TouchableWithoutFeedback >
+                                <Image
+                                    style={{ position : 'absolute',
+                                    width : 140,
+                                    height: 40, 
+                                    left : 115   }}
+                                    source={require('../assets/Home/largeWave.png')}
+                                    resizeMode={'contain'}/>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback >
+                                <Image
+                                    style={{
+                                        position : 'absolute',
+                                        width : 45,
+                                        height: 45, 
+                                        left : 265  
+                                    }}
+                                    source={require('../assets/Home/bigPlay.png')}
+                                    resizeMode={'contain'}/>
+                        </TouchableWithoutFeedback>
+                        <View style={styles.audioContainer}>
+                            <TouchableWithoutFeedback >
+                                <Image
+                                    style={{
+                                        top: 10,
+                                        width :40,
+                                        height: 40,  
+                                    }}
+                                    source={require('../assets/Home/moreV.png')}
+                                    resizeMode={'contain'}/>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
+                </View>
+
+                </ScrollView>
+            </View>
+        <View style={{height:100,width:'100%',position:'absolute',top:'81%',alignItems:'center',justifyContent:'center'}}>
+                    <TouchableWithoutFeedback >
+                                <Image
+                                    style={{width:80,height:80}}
+                                    source={require('../assets/Home/bigPlus.png')}
+                                    resizeMode={'contain'}/>
+                            </TouchableWithoutFeedback>
+        </View>
         </View>
     );
 }
@@ -143,7 +350,7 @@ function HomeScreen(props) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "rgba(44,39,29,1)"
+      backgroundColor: "rgba(44,39,29,1)",
     },
     rect: {
       width: '100%',
@@ -215,7 +422,6 @@ const styles = StyleSheet.create({
         flex : 1,
         marginTop: 10,
         flexGrow:1 ,
-        maxHeight  :  1000
     },
     headContainerView:{
         width : '90%',
@@ -309,9 +515,9 @@ const styles = StyleSheet.create({
         position : 'absolute',
         alignItems : 'center',
     }, likeButon:{
-        top : 5,
-        width : 30,
-        height: 30,        
+        width : 25,
+        height: 25,     
+        margin :3   
     },
     audioChatContainer :{
         height : 50,
@@ -324,7 +530,7 @@ const styles = StyleSheet.create({
         width : 21,
         height: 19,        
     }, commentText: {
-        marginTop : 10
+        marginTop : 11
     } , 
     shareButon:{
         position : 'absolute',
@@ -373,6 +579,18 @@ const styles = StyleSheet.create({
         height :'100%',
         width : '100%',
         flex :1
+   },
+   footerContainerView:{
+       width : '90%',
+       height : 311,
+       backgroundColor : '#EFEFFF',
+       borderRadius : 15,
+       left : 20,
+       position : 'absolute',
+       overflow : 'hidden',
+        top: 1320
    }    
+
+
   });
 export default HomeScreen;
