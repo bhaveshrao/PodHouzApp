@@ -1,9 +1,16 @@
 import React from 'react';
 import { ImageBackground, StyleSheet,View,Text,Button, TouchableOpacity ,Image, TouchableWithoutFeedback,KeyboardAvoidingView} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TextInput } from 'react-native-gesture-handler';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
+import RootNavigator from './Navigation/TabNavigator/RootNavigator';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+
+const Tab = createBottomTabNavigator();
+
+import HomeScreen from './HomeScreen';
+
 
 function OTPScreen({ navigation }) {
     return (
@@ -69,7 +76,7 @@ function OTPScreen({ navigation }) {
             <View style={styles.viewButtonContainer}>
                 <TouchableOpacity
                     style={styles.loginScreenButton}
-                    onPress={() =>  navigation.navigate('HomeScreen')}>
+                    onPress={() => navigation.navigate('RootNavigator')}>
                     <Text style={styles.loginText}>Verify & Proceed</Text>
              </TouchableOpacity>
          </View>

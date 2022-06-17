@@ -6,6 +6,7 @@ import LeftToBeHeardComponent from './Component/Home/LeftToBeHeardComponent';
 import SmartTalkComponent from './Component/Home/SmartTalkComponent';
 import PotentialAlliessComponent from './Component/Home/PotentialAlliessComponent';
 
+
 const DATA = [
     {
       id: "1",
@@ -53,7 +54,7 @@ const PotentialData = [
       imageUserA:require('../assets/Home/potentialImage3.png')
     }
 ]
-function HomeScreen(props) {
+function HomeScreen(navigation) {
 
     const renderItem = ({ item }) => (
         <SmartTalkComponent
@@ -96,7 +97,7 @@ function HomeScreen(props) {
             <Image style={styles.statusImage} source={require('../assets/Home/onlineIcon.png')}/>
             <View style={styles.rect}> 
                 <ScrollView scrollEventThrottle={16} style={styles.scrollViewContainer} automaticallyAdjustContentInsets = {true}>
-            <View style={ {height : 2000, width:'100%'}}>
+            <View style={ {height : 1870, width:'100%'}}>
               <SearchBar
                 source = {require('../assets/Home/Rectangle.png')}
                 style={styles.searchBarStyle}
@@ -180,7 +181,7 @@ function HomeScreen(props) {
                                 style={{
                                     width : 30,
                                     height : 40,
-                                    left : 250,
+                                    left : 210,
                                     position : 'absolute'
                                 }}
                                 source={require('../assets/Home/Vector.png')}
@@ -335,10 +336,10 @@ function HomeScreen(props) {
 
                 </ScrollView>
             </View>
-        <View style={{height:100,width:'100%',position:'absolute',top:'81%',alignItems:'center',justifyContent:'center'}}>
+        <View style={{height:100,width:'100%',position:'absolute',top:'88%',alignItems:'center',justifyContent:'center'}}>
                     <TouchableWithoutFeedback >
                                 <Image
-                                    style={{width:80,height:80}}
+                                    style={{width:65,height:65}}
                                     source={require('../assets/Home/bigPlus.png')}
                                     resizeMode={'contain'}/>
                             </TouchableWithoutFeedback>
