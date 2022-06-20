@@ -1,12 +1,99 @@
-import React from 'react';
-import { ImageBackground, StyleSheet, View, Text, Button, TouchableOpacity, Image, TouchableWithoutFeedback, ScrollView ,KeyboardAvoidingView} from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import React, {useState} from 'react';
+import { ImageBackground, StyleSheet, View, Text, Button, TouchableOpacity, Image, TouchableWithoutFeedback, ScrollView ,KeyboardAvoidingView,ActivityIndicator,SafeAreaView,Alert} from 'react-native';
+import { RectButton, TextInput } from 'react-native-gesture-handler';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/stack';
+import { baseURL,loginApi } from '../Utility/AppConstant.js'; 
+import AppLoaderIndicator from '../Utility/AppLoaderIndicator.js';
 
 
 function LoginScreen({ navigation }) {
+  const [data, setData] = useState([]);
+  const [visible, setVisible] = useState(false);
+  const [text, setText] = useState('Sign In');
+  const [message, setMessage] = useState('');
+
+  console.log(data);
+
+  const letHide = event => {
+    // event.preventDefault();
+    console.log(message.trim().length)
+
+    if (message.trim().length == 0) {
+
+     Alert.alert(  
+        'Error!',  
+        'Please Enter Your Number',  
+        [  
+            {text: 'OK', onPress: () => console.log('OK Pressed')},  
+        ]   
+    );        
+    } else if (message.trim().length !== 10) {
+      Alert.alert(  
+        'Error!',  
+        'Please Enter Correct 10 digit Mobile Number',  
+        [  
+            {text: 'OK', onPress: () => console.log('OK Pressed')},  
+        ]   
+    );   
+    } else {
+      loginWith('9713506147')
+      navigation.navigate('OTPScreen',{'otp':'123456','mobile_no':'9713506147'})
+
+      if (visible === false) {
+        console.log('called')
+        setVisible(true);
+        setText('')
+       }
+    }
+  }
+
+  const handleChange = event => {
+    setMessage(event.target.value);
+    console.log(event.target.value)
+  };
+
+  const handleClick = event => {
+
+   
+  };
+  
+  
+ 
+ const loginWith = (textString) => {
+
+  console.log(baseURL + loginApi )
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+
+    var raw = JSON.stringify({
+     "mobile_no": textString
+    });
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+ fetch(baseURL + loginApi, requestOptions)
+  .then(response => response.json())
+  .then((result) => {
+    setVisible(false)
+    setText('Sign In')
+    console.log(result.data)
+    console.log(result.status)
+    // console.log(result.user_otp)
+    // navigation.navigate('OTPScreen',{'otp':result.user_otp})
+    console.log(textString)
+   navigation.navigate('OTPScreen',{'otp':result.user_otp,'mobile_no':textString})
+  })
+  .catch(error => console.log('error', error)); 
+  };
+
   return (
     <KeyboardAvoidingView
     style={styles.container}>
@@ -22,16 +109,27 @@ function LoginScreen({ navigation }) {
           </View>
           <View style={styles.viewInputContainer}>
             <TextInput
+              id="message"
+              name="message"
               style={styles.input}
               placeholder="Enter Your Number or Email"
-              keyboardType="numeric">
+              keyboardType="numeric"
+              focusColor="blue"
+              onChangeText={newText => setMessage(newText)}
+              >
             </TextInput>
           </View>
           <View style={styles.viewButtonContainer}>
             <TouchableOpacity
               style={styles.loginScreenButton}
-              onPress={() => navigation.navigate('OTPScreen')}>
-              <Text style={styles.loginText}>Sign In</Text>
+              onPress={letHide}>
+              <Text style={styles.loginText}>{text}</Text>
+              <ActivityIndicator
+                 size="small"
+                 color="white"
+                 animating={visible}
+                 style={{justifyContent:'center',alignItems:'center',top:-8}}
+                 />
             </TouchableOpacity>
           </View>
           <Image source={require('../assets/Login/orImage.png')}
@@ -55,6 +153,7 @@ function LoginScreen({ navigation }) {
             </View>
           </View>
         </ImageBackground>
+        
       </View>
     </HideKeyboard>
     </KeyboardAvoidingView>
@@ -140,6 +239,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 18,
+    top : 10
 
   },
   imageStyel: {

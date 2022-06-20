@@ -1,5 +1,8 @@
 import React from 'react';
-import { View,Text,TouchableWithoutFeedback,Image,ImageBackground,FlatList} from 'react-native';
+import { View,Text,TouchableWithoutFeedback,Image,ImageBackground,FlatList,TouchableOpacity} from 'react-native';
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 
 const DATA = [
     {
@@ -63,7 +66,7 @@ const DATA = [
   
       }
 ]
-function PodCastScreen(props) {
+function PodCastScreen(navigation) {
 
     const renderItem = ({ item }) => (
             <View
@@ -120,7 +123,7 @@ function PodCastScreen(props) {
             </ImageBackground>
             <Text style={{fontSize:18,fontWeight:'bold',color:'#263238',top:'51%',left:'7%',position:'absolute'}}>Speakers</Text>
             
-            <FlatList style={{height:300, top:'54%',width:'100%',flex:1,position:'absolute'}} 
+            <FlatList style={{height:220, top:'54%',width:'100%',flex:1,position:'absolute'}} 
                                       contentContainerStyle={{ paddingVertical: 11 }}
                                       data={DATA}
                                       numColumns={5}
@@ -128,7 +131,34 @@ function PodCastScreen(props) {
                                         keyExtractor={item => item.id}
                                       >
             </FlatList>
+            <Text style={{fontSize:25,fontWeight:'bold',top:'82%',left:'40%',position:'absolute'}}>0:00</Text>
+            <Image
+                                    style={{width:'80%',height:33,left:'10%',top:'87%',position:'absolute'}}
+                                    source={require('../assets/PodCast/bigWave.png')}
+                                    />
+             <View style={{width:'100%',height:60,top:'91%',flexDirection:'row',alignItems:'center',justifyContent:'center',overflow:'hidden',position:'absolute'}}>
 
+             <TouchableOpacity style = {{left:-20}}
+                 onPress={() => navigation.navigate('OTPScreen')}>
+                   <Image style={{width:20,height:20}}
+                     source = {require('../assets/PodCast/forward.png')}
+                    />
+              </TouchableOpacity>
+            <TouchableOpacity style = {{}}
+                 onPress={() => navigation.navigate('OTPScreen')}>
+                   <Image style={{width:60,height:60}}
+                     source = {require('../assets/PodCast/paushButton.png')}
+                    />
+              </TouchableOpacity>
+             
+              <TouchableOpacity style = {{left:20}}
+                 onPress={() => navigation.navigate('OTPScreen')}>
+                   <Image style={{width:20,height:20}}
+                     source = {require('../assets/PodCast/backward.png')}
+                    />
+              </TouchableOpacity>
+
+             </View>
         </View>
         
     );

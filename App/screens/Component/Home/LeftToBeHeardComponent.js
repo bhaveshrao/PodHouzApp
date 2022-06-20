@@ -12,7 +12,7 @@ function LeftToBeHeardComponent(props) {
                             <View style={{height:35,width:'98%',left:2,flexDirection:'row',alignItems:'center'}}>
                                 <Text style={{fontSize:13}}>{props.name}</Text>
                                 <Image
-                                    style={{height:17,width:17,resizeMode:'cover',right:-20}}
+                                    style={{height:17,width:17,resizeMode:'cover',left:'90%',position:'absolute'}}
                                     source={props.playIcon}
                                     />
                               </View>

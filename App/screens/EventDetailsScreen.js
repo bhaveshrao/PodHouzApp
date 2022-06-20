@@ -42,7 +42,7 @@ const PotentialData = [
       }
 ]
 
-function EventDetailsScreen(props) {
+function EventDetailsScreen(navigation) {
 
     const renderItemAlliess = ({ item }) => (
 

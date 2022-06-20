@@ -12,27 +12,8 @@ import OTPScreen from '../../OTPScreen';
 import LoginScreen from '../../LoginScreen';
 
 const TabNavigator = createAppContainer(createBottomTabNavigator({
-    
-    Login: {
-        screen : LoginScreen,
-        tabBarOptions :{
-            visualViewport : false
-        }
-    },
-    OTP:{
-        screen : OTPScreen,
-        tabBarOptions: {
-            visible: false
-        }
-    },
-    Main:{
-        screen: createAppContainer(createBottomTabNavigator({
-          Home: HomeScreen,
-        })),
-        tabBarOptions: {
-            visible: false
-        }
-    },
+   
+  
   
 
   },

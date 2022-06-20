@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, View, Text, Button, TouchableOpacity, Image, TouchableWithoutFeedback, ScrollView ,FlatList} from 'react-native';
+import { ImageBackground, StyleSheet, View, Text, Button, TouchableOpacity, Image, TouchableWithoutFeedback, ScrollView ,FlatList,SafeAreaView} from 'react-native';
 import { Feather, Entypo } from "@expo/vector-icons";
 import SearchBar from "react-native-dynamic-search-bar";
 import LeftToBeHeardComponent from './Component/Home/LeftToBeHeardComponent';
@@ -96,7 +96,7 @@ function HomeScreen(navigation) {
             <Image style={styles.userImage} source={require('../assets/Home/userImage.png')}/>
             <Image style={styles.statusImage} source={require('../assets/Home/onlineIcon.png')}/>
             <View style={styles.rect}> 
-                <ScrollView scrollEventThrottle={16} style={styles.scrollViewContainer} automaticallyAdjustContentInsets = {true}>
+        <ScrollView scrollEventThrottle={16} style={styles.scrollViewContainer} automaticallyAdjustContentInsets = {true}>
             <View style={ {height : 1870, width:'100%'}}>
               <SearchBar
                 source = {require('../assets/Home/Rectangle.png')}
@@ -207,6 +207,8 @@ function HomeScreen(navigation) {
                 </View>
                 <Text numberOfLines={1} style={styles.leftTobeHeardText}>Left to be Heard</Text>
                 <View style={{height:230,width:'100%',top:440}}>
+                <SafeAreaView style={{flex: 1}}>
+
                     <ScrollView style={styles.viewHoriScrollContainer}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}>
@@ -219,13 +221,16 @@ function HomeScreen(navigation) {
                                 name="Save Animals in Our Forest"
                                 playIcon={require('../assets/Home/play.png')}/>
                     </ScrollView>
+                </SafeAreaView>
+
                 </View>
                     <View style={{height:50,width:'95%',top:440,flexDirection:'row',alignItems:'center',left:20}}>
                         <Text style={{fontSize:18,fontWeight:'bold'}}>Small Talks</Text>
                         <TouchableWithoutFeedback >
                                <Text style={{fontSize:15,marginLeft:'50%'}}>Listen All</Text>
                         </TouchableWithoutFeedback>
-                        <FlatList style={{height:220, top:50,width:'100%',flex:1,position:'absolute',left:-10}} 
+                     <SafeAreaView style={{flex: 1,width:'100%',height:220,position:'absolute',top:'100%',left:-10}}>
+                        <FlatList style={{height:220,width:'100%',flex:1,position:'absolute'}} 
                                       contentContainerStyle={{ paddingVertical: 11 }}
                                       data={DATA}
                                       numColumns={2}
@@ -233,19 +238,23 @@ function HomeScreen(navigation) {
                                         keyExtractor={item => item.id}
                                       >
                         </FlatList>
+                    </SafeAreaView>
                     </View>
                     <View style={{height:50,width:'95%',top:635,flexDirection:'row',alignItems:'center',left:20}}>
                         <Text style={{fontSize:18,fontWeight:'bold'}}>Potential Alliess</Text>
                         <TouchableWithoutFeedback >
                                <Text style={{fontSize:15,marginLeft:'35%'}}>Listen All</Text>
                         </TouchableWithoutFeedback>
-                    <FlatList style={{height:410, top:50,width:'100%',flex:1,position:'absolute',left:-10}} 
+                    <SafeAreaView style={{flex: 1,width:'100%',height:410,position:'absolute',top:'82%',left:-10}}>
+                     <FlatList style={{height:410,width:'100%',flex:1,position:'absolute'}} 
                                       data={PotentialData}
                                       numColumns={1}
                                       renderItem={renderItemAlliess}
                                     keyExtractor={item => item.id}
                                       >
                     </FlatList>
+                    </SafeAreaView>
+
                     </View>
                 </View>
 
@@ -269,6 +278,7 @@ function HomeScreen(navigation) {
                     </ImageBackground>
                     <View opacity={0.8} style={styles.bottomContainerView}>
                         <View style={{
+
                                height : 50,
                                width : 50,
                                left : 10,
@@ -334,7 +344,7 @@ function HomeScreen(navigation) {
                     </View>
                 </View>
 
-                </ScrollView>
+            </ScrollView>
             </View>
         <View style={{height:100,width:'100%',position:'absolute',top:'88%',alignItems:'center',justifyContent:'center'}}>
                     <TouchableWithoutFeedback >

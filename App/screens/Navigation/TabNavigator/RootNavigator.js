@@ -2,16 +2,15 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import TabNavigator from '.';
-import HomeScreen from '../../HomeScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-dynamic-vector-icons';
 import {Image} from 'react-native';
 import EventDetailsScreen from '../../EventDetailsScreen';
 import PodCastScreen from '../../PodCastScreen';
 import CommentScreen from '../../CommentScreen';
-
+import HomeScreen from '../../HomeScreen';
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const RootNavigator = (navigation) => {
   return (
@@ -28,10 +27,9 @@ const RootNavigator = (navigation) => {
       }
       })}>
        <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false}}  />
-       <Tab.Screen name="EventDetail" component={EventDetailsScreen} options={{ headerShown: false}}  />
+       <Tab.Screen name="EventDetail" component={EventDetailsScreen} options={{ headerShown: false}}  /> 
        <Tab.Screen name="PodCast" component={PodCastScreen} options={{ headerShown: false}}  />
        <Tab.Screen name="Comment" component={CommentScreen} options={{ headerShown: false}}  />
-
     </Tab.Navigator>
   </NavigationContainer>
   );
