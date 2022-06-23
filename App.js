@@ -5,9 +5,10 @@ import {NavigationContainer} from '@react-navigation/native';
 import RootNavigator from './App/screens/Navigation/TabNavigator/RootNavigator';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
+import 'react-native-gesture-handler';
 
 import OTPScreen from './App/screens/OTPScreen';
-
+import SplashScreen from './App/screens/SplashScreen';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +16,8 @@ const App = () => {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator>
-        <Stack.Screen name= "LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
+        <Stack.Screen name= "SplashScreen" component={SplashScreen} options={{ headerShown: false }} />
+        <Stack.Screen name= "LoginScreen" component={LoginScreen} options={{ headerShown: false ,animationEnabled:false}} />
         <Stack.Screen name= "OTPScreen" component={OTPScreen} options={{ headerShown: false }} />
         <Stack.Screen name="RootNavigator" component={RootNavigator} options={{ headerShown: false }} />
       </Stack.Navigator>

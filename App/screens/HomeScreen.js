@@ -221,7 +221,7 @@ function HomeScreen(navigation) {
                                 name="Save Animals in Our Forest"
                                 playIcon={require('../assets/Home/play.png')}/>
                     </ScrollView>
-                </SafeAreaView>
+                    </SafeAreaView>
 
                 </View>
                     <View style={{height:50,width:'95%',top:440,flexDirection:'row',alignItems:'center',left:20}}>

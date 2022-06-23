@@ -38,9 +38,10 @@ function LoginScreen({ navigation }) {
         ]   
     );   
     } else {
-      loginWith('9713506147')
-      navigation.navigate('OTPScreen',{'otp':'123456','mobile_no':'9713506147'})
+      loginWith(message)
+      // navigation.navigate('OTPScreen',{'otp':'123456','mobile_no':'9713506147'})
 
+      console.log(message)
       if (visible === false) {
         console.log('called')
         setVisible(true);
@@ -86,7 +87,7 @@ var requestOptions = {
     setText('Sign In')
     console.log(result.data)
     console.log(result.status)
-    // console.log(result.user_otp)
+    console.log(result.user_otp)
     // navigation.navigate('OTPScreen',{'otp':result.user_otp})
     console.log(textString)
    navigation.navigate('OTPScreen',{'otp':result.user_otp,'mobile_no':textString})
@@ -96,7 +97,9 @@ var requestOptions = {
 
   return (
     <KeyboardAvoidingView
-    style={styles.container}>
+    behavior={Platform.OS === "ios" ? null : null}
+    style={styles.container}
+       >
     <HideKeyboard>
       <View style={styles.container}>
         <ImageBackground
@@ -128,7 +131,7 @@ var requestOptions = {
                  size="small"
                  color="white"
                  animating={visible}
-                 style={{justifyContent:'center',alignItems:'center',top:-8}}
+                 style={{justifyContent:'center',alignItems:'center',top: Platform.OS === "ios" ? '25%' : '27%', position:'absolute'}}
                  />
             </TouchableOpacity>
           </View>
@@ -239,7 +242,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 18,
-    top : 10
+    top : '25%',
+    position:'absolute'
 
   },
   imageStyel: {

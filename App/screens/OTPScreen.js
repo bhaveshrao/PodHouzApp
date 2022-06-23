@@ -1,4 +1,4 @@
-import React,{useRef,useState} from 'react';
+import React,{useRef,useState,useEffect} from 'react';
 import { ImageBackground, StyleSheet,View,Text,Button, TouchableOpacity ,Image, TouchableWithoutFeedback,KeyboardAvoidingView,Alert,ActivityIndicator} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TextInput } from 'react-native-gesture-handler';
@@ -7,8 +7,8 @@ import RootNavigator from './Navigation/TabNavigator/RootNavigator';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
-import { baseURL,verifyOTPApi,resendOTPApi } from '../Utility/AppConstant.js'; 
-
+import { baseURL,verifyOTPApi,resendOTPApi} from '../Utility/AppConstant.js'; 
+import OTPTextView from 'react-native-otp-textinput';
 const Tab = createBottomTabNavigator();
 
 import HomeScreen from './HomeScreen';
@@ -29,24 +29,45 @@ function OTPScreen({ navigation}) {
     var otpString = ""
     const [visible, setVisible] = useState(false);
     const [text, setText] = useState('Verify & Proceed');
-  
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
+
 
     const route = useRoute();
     console.log(route.params)
 
-    Alert.alert(  
-        'Alert!',  
-        'Your OTP is ' + route.params.otp,  
-        [  
-            {text: 'OK', onPress: () => console.log('OK Pressed')},  
-        ]   
-    ); 
+    const otpInput = useRef(null);
+
+    const clearText = () => {
+        otpInput.current.clear();
+    }
+
+    const setOTPText = () => {
+        otpInput.current.setValue("1234");
+    }
+
+
+    const onScreenLoad = () => {
+        Alert.alert(  
+            'Alert!',  
+            'Your OTP is ' + route.params.otp,  
+            [  
+                {text: 'OK', onPress: () => console.log('OK Pressed')},  
+            ]   
+        ); 
+    
+    }
+    useEffect(() => {
+        // write your code here, it's like componentWillMount
+        onScreenLoad();
+    }, [])
+
 
     const letHide = event => {
         // event.preventDefault();
     
+    //  navigation.navigate('RootNavigator',{'otp':'123456'})
 
-        if (otpString.trim().length == 0) {
+      if (otpString.trim().length == 0) {
     
          Alert.alert(  
             'Error!',  
@@ -67,7 +88,8 @@ function OTPScreen({ navigation}) {
           // loginWith('abc')
         //   navigation.navigate('RootNavigator',{'otp':'123456'})
     
-            verifyOTPApi(otpString)
+
+        verifyOTP(otpString)
           if (visible === false) {
             console.log('called')
             setVisible(true);
@@ -88,6 +110,8 @@ function OTPScreen({ navigation}) {
            "otp": otpString,
            "mobile_no" : route.params.mobile_no
           });
+
+          console.log(raw)
       
       var requestOptions = {
         method: 'POST',
@@ -101,10 +125,23 @@ function OTPScreen({ navigation}) {
         .then((result) => {
           setVisible(false)
           setText('Verify & Proceed')
+          console.log('here is response')
           console.log(result.data)
           console.log(result.status)
-          // console.log(result.user_otp)
-          // navigation.navigate('OTPScreen',{'otp':result.user_otp})
+
+          if (result.status === "success") {
+              setText('Verify & Proceed')
+              setVisible(false)
+          navigation.navigate('RootNavigator',{'otp':'123456'})
+          }else if (result.status == "error"){
+            Alert.alert(  
+                'Error!',  
+                result.message,  
+                [  
+                    {text: 'OK', onPress: () => console.log('OK Pressed')},  
+                ]   
+            );  
+          }
           console.log(textString)
         })
         .catch(error => console.log('error', error)); 
@@ -133,13 +170,13 @@ function OTPScreen({ navigation}) {
     .then(response => response.json())
     .then((result) => {
       setVisible(false)
-      setText('Sign In')
+      setText('Verify & Proceed')
       console.log(result.data)
       console.log(result.status)
       if (result.status == "success"){
         Alert.alert(  
             'Alert!',  
-            'OTP has been sent to your mobile number', 
+            'OTP has been sent to your mobile number, your new otp is' + ' ' + result.user_otp, 
             [  
                 {text: 'OK', onPress: () => console.log('OK Pressed')},  
             ]   
@@ -173,23 +210,24 @@ function OTPScreen({ navigation}) {
 
   
     return (
+
+     <ImageBackground
+        resizeMode="cover"
+        style={styles.background}
+         source={require('../assets/OTP/OTPBackground.png')}>
+        <Text style={styles.otpWithText}>OTP</Text>
+
         <KeyboardAvoidingView
         style={styles.container}
-        behavior = "height"
-       >
+        behavior='padding'>
         <HideKeyboard>
         <View style={styles.container}> 
-         <ImageBackground
-                resizeMode="cover"
-                style={styles.background}
-                 source={require('../assets/OTP/OTPBackground.png')}>
             <View style={styles.navigationContainer}>
                 < TouchableWithoutFeedback style={styles.backButton} onPress={() => navigation.goBack()}>
                     <Image source={require('../assets/back.png')}>
                      </Image>
                 </TouchableWithoutFeedback > 
             </View>
-            <Text style={styles.otpWithText}>OTP</Text>
             <View style={styles.viewContainer}>
               <Text style={styles.textTitle}>Enter the OTP (One Time Password)</Text>
               <Text style={styles.textTitle}>sent on +91-{route.params.mobile_no}</Text>
@@ -200,7 +238,6 @@ function OTPScreen({ navigation}) {
                 placeholder="1"
                 keyboardType="numeric"
                 maxLength={1}
-                autoFocus={true}
                 returnKeyType="next"
                 ref={ref_input[0]}
                 onChangeText={text => focusNext(text, 0)}
@@ -281,15 +318,14 @@ function OTPScreen({ navigation}) {
                  size="small"
                  color="white"
                  animating={visible}
-                 style={{justifyContent:'center',alignItems:'center',top:-8}}
+                 style={{justifyContent:'center',alignItems:'center',top: Platform.OS === "ios" ? '25%' : '30%',position:'absolute'}}
                  />
             </TouchableOpacity>
-
          </View>
-       </ImageBackground>
      </View>
      </HideKeyboard>
      </KeyboardAvoidingView>
+     </ImageBackground>
 
     );
 }
@@ -305,13 +341,14 @@ const styles = StyleSheet.create({
         width : '100%',
         height : '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        position : 'absolute'
     },
     container: {
         flex: 1,
         width: '100%',
         justifyContent: "center",
-        
+        alignContent:'center'
     },
     navigationContainer:{
         position : 'absolute',
@@ -336,14 +373,12 @@ const styles = StyleSheet.create({
         textAlign:'center',
         fontWeight:'bold',
         fontSize: 18,
-        justifyContent : 'center',
         top : '6%',
-        position: 'absolute'
-        
-
+        position: 'absolute',
+        left : '47%'
     },
        viewContainer: {
-        top : '60%',
+        top : '57%',
         width: '100%',
         justifyContent: "center",
         alignItems : 'center',
@@ -387,7 +422,10 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         top : '80%',
         position : 'absolute',
-        marginVertical : 20
+        marginVertical : 20,
+        width:'100%',
+        justifyContent:'center'
+        
     },
      viewButtonContainer: {
         paddingTop: 10,
@@ -404,14 +442,15 @@ const styles = StyleSheet.create({
         backgroundColor:'#D9B10E',
         borderRadius:10,
         borderWidth: 1,
-        justifyContent : 'center'
+        justifyContent : 'center',
+        alignItems:'center'
       },
       loginText:{
           color:'#fff',
           textAlign:'center',
           fontWeight:'bold',
           fontSize :  18,
-          top:9
+          position:'absolute'
           
       }
     

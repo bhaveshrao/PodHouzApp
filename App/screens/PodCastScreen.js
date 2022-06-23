@@ -131,7 +131,7 @@ function PodCastScreen(navigation) {
                                         keyExtractor={item => item.id}
                                       >
             </FlatList>
-            <Text style={{fontSize:25,fontWeight:'bold',top:'82%',left:'40%',position:'absolute'}}>0:00</Text>
+            <Text style={{fontSize:25,fontWeight:'bold',top:'82%',left:'42%',position:'absolute'}}>0:00</Text>
             <Image
                                     style={{width:'80%',height:33,left:'10%',top:'87%',position:'absolute'}}
                                     source={require('../assets/PodCast/bigWave.png')}
