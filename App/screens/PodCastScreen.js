@@ -8,61 +8,61 @@ const DATA = [
     {
       id: "1",
       titleA: "Jhon Deo",
-      imageUserA: require('../assets/Home/user1.png')
+      imageUserA: require('../Assets/Home/user1.png')
     },
     {
       id: "2",
       titleA: "Benjamin",
-      imageUserA:require('../assets/Home/user2.png')
+      imageUserA:require('../Assets/Home/user2.png')
 
     },
     {
       id: "3",
       titleA: "Benjamin",
-      imageUserA:require('../assets/Home/user3.png')
+      imageUserA:require('../Assets/Home/user3.png')
 
 
     },
     {
       id: "4",
       titleA: "Jhon Deo",
-      imageUserA:require('../assets/Home/user4.png')
+      imageUserA:require('../Assets/Home/user4.png')
 
     },
     {
         id: "5",
         titleA: "Benjamin",
-        imageUserA: require('../assets/Home/user1.png')
+        imageUserA: require('../Assets/Home/user1.png')
       },
       {
         id: "6",
         titleA: "Benjamin",
-        imageUserA:require('../assets/Home/user2.png')
+        imageUserA:require('../Assets/Home/user2.png')
   
       },
       {
         id: "7",
         titleA: "Benjamin",
-        imageUserA:require('../assets/Home/user3.png')
+        imageUserA:require('../Assets/Home/user3.png')
   
   
       },
       {
         id: "8",
         titleA: "Jhon Deo",
-        imageUserA:require('../assets/Home/user4.png')
+        imageUserA:require('../Assets/Home/user4.png')
   
       }  ,
       {
         id: "9",
         titleA: "Jhon Deo",
-        imageUserA:require('../assets/Home/user1.png')
+        imageUserA:require('../Assets/Home/user1.png')
   
       },
       {
         id: "10",
         titleA: "Jhon Deo",
-        imageUserA:require('../assets/Home/user2.png')
+        imageUserA:require('../Assets/Home/user2.png')
   
       }
 ]
@@ -86,7 +86,7 @@ function PodCastScreen(navigation) {
                     <TouchableWithoutFeedback >
                                 <Image
                                     style={{width:15,height:15,left:'88%',top:'50%',position:'absolute'}}
-                                    source={require('../assets/notification.png')}
+                                    source={require('../Assets/notification.png')}
                                     />
                     </TouchableWithoutFeedback>
             </View>
@@ -102,7 +102,7 @@ function PodCastScreen(navigation) {
                     alignItems:'center',
                     overflow : 'hidden'
                 }}
-                 source={require('../assets/PodCast/podCastBanner.png')}>
+                 source={require('../Assets/PodCast/podCastBanner.png')}>
                      <ImageBackground style={{
                          width: 100,
                          height:100,
@@ -110,10 +110,10 @@ function PodCastScreen(navigation) {
                          alignItems:'center',
                          justifyContent : 'center'
                      }}
-                     source={require('../assets/PodCast/blurrUser.png')}>
+                     source={require('../Assets/PodCast/blurrUser.png')}>
                            <Image
                                     style={{width:80,height:80,position:'absolute'}}
-                                    source={require('../assets/PodCast/podCastUser.png')}
+                                    source={require('../Assets/PodCast/podCastUser.png')}
                                     />
                      </ImageBackground>
                      <Text style={{fontSize:20,fontWeight:'bold',color:'white',position:'absolute',top:'57%'}}>Shizuka</Text>
@@ -134,27 +134,27 @@ function PodCastScreen(navigation) {
             <Text style={{fontSize:25,fontWeight:'bold',top:'82%',left:'42%',position:'absolute'}}>0:00</Text>
             <Image
                                     style={{width:'80%',height:33,left:'10%',top:'87%',position:'absolute'}}
-                                    source={require('../assets/PodCast/bigWave.png')}
+                                    source={require('../Assets/PodCast/bigWave.png')}
                                     />
              <View style={{width:'100%',height:60,top:'91%',flexDirection:'row',alignItems:'center',justifyContent:'center',overflow:'hidden',position:'absolute'}}>
 
              <TouchableOpacity style = {{left:-20}}
                  onPress={() => navigation.navigate('OTPScreen')}>
                    <Image style={{width:20,height:20}}
-                     source = {require('../assets/PodCast/forward.png')}
+                     source = {require('../Assets/PodCast/forward.png')}
                     />
               </TouchableOpacity>
             <TouchableOpacity style = {{}}
                  onPress={() => navigation.navigate('OTPScreen')}>
                    <Image style={{width:60,height:60}}
-                     source = {require('../assets/PodCast/paushButton.png')}
+                     source = {require('../Assets/PodCast/paushButton.png')}
                     />
               </TouchableOpacity>
              
               <TouchableOpacity style = {{left:20}}
                  onPress={() => navigation.navigate('OTPScreen')}>
                    <Image style={{width:20,height:20}}
-                     source = {require('../assets/PodCast/backward.png')}
+                     source = {require('../Assets/PodCast/backward.png')}
                     />
               </TouchableOpacity>
 

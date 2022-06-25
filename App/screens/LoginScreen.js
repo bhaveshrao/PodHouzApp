@@ -105,7 +105,7 @@ var requestOptions = {
         <ImageBackground
           resizeMode="cover"
           style={styles.background}
-          source={require('../assets/Login/backgroundLogin.png')}>
+          source={require('../Assets/Login/backgroundLogin.png')}>
           <View style={styles.viewContainer}>
             <Text style={styles.textTitle}>Mobile Number/Email Id</Text>
             <Text style={styles.textSubTitle}>Type your mobile number to generate OTP</Text>
@@ -135,16 +135,27 @@ var requestOptions = {
                  />
             </TouchableOpacity>
           </View>
-          <Image source={require('../assets/Login/orImage.png')}
+          <Image source={require('../Assets/Login/orImage.png')}
             style={styles.imageStyel} />
           <Text style={styles.loginWithText}>LOGIN WITH</Text>
           <View style={styles.socialContainer}>
-            <Image source={require('../assets/Login/facebook.png')}
-              style={styles.SocialImageStyelFacebook} />
-            <Image source={require('../assets/Login//google.png')}
-              style={styles.SocialImageStyel} />
-            <Image source={require('../assets/Login/apple.png')}
-              style={styles.SocialImageStyelApple} />
+
+          <TouchableOpacity onPress={() => this.moveToAddNewCustomer()}
+             style={styles.SocialImageStyelFacebook}
+            >
+            <Image style={{width:'100%',height:'100%'}} source={require('../Assets/Login/facebook.png')} />
+         </TouchableOpacity>
+         <TouchableOpacity onPress={() => this.moveToAddNewCustomer()}
+             style={styles.SocialImageStyel}
+            >
+            <Image style={{width:'100%',height:'100%'}} source={require('../Assets/Login/google.png')} />
+         </TouchableOpacity>
+           
+         <TouchableOpacity onPress={() => this.moveToAddNewCustomer()}
+             style={styles.SocialImageStyelApple}
+            >
+            <Image style={{width:'100%',height:'100%'}} source={require('../Assets/Login/apple.png')} />
+         </TouchableOpacity>
           </View>
           <View style={styles.bottomContainer}>
             <Text style={styles.bottomText}> By Signing up you agree to the terms and</Text>
@@ -280,12 +291,14 @@ const styles = StyleSheet.create({
     width: 67,
     height: 48,
     right: 50,
+  
   },
   SocialImageStyelApple: {
     width: 67,
     height: 48,
     left: 50,
-  },
+    
+  },  
   bottomContainer: {
     marginTop : 20,
     top: '91%',

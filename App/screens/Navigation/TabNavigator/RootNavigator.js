@@ -9,10 +9,15 @@ import EventDetailsScreen from '../../EventDetailsScreen';
 import PodCastScreen from '../../PodCastScreen';
 import CommentScreen from '../../CommentScreen';
 import HomeScreen from '../../HomeScreen';
+import CreateCommentScreen from '../../CreateCommentScreen';
+
+import CommentNavigator from './CommentNavigator';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-const RootNavigator = (navigation) => {
+
+
+const RootNavigator = ({navigation}) => {
   return (
   <NavigationContainer independent={true}>
     <Tab.Navigator
@@ -29,11 +34,29 @@ const RootNavigator = (navigation) => {
        <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false}}  />
        <Tab.Screen name="EventDetail" component={EventDetailsScreen} options={{ headerShown: false}}  /> 
        <Tab.Screen name="PodCast" component={PodCastScreen} options={{ headerShown: false}}  />
-       <Tab.Screen name="Comment" component={CommentScreen} options={{ headerShown: false}}  />
+       <Tab.Screen name="Comment" component={CommentNavigator} 
+          options={({ route }) => ({
+            headerShown: false,
+            tabBarVisible: getTabBarVisibility(route)
+          })}
+       />
     </Tab.Navigator>
   </NavigationContainer>
   );
 };
+
+const getTabBarVisibility = (route) => {
+  const routeName = route.state
+    ? route.state.routes[route.state.index].name
+    : '';
+
+    console.log(routeName)
+  if (routeName === 'CreateCommentScreen') {
+    return false;
+  }
+
+  return true;
+}
 
 
 const screenOptions = (route, color) => {

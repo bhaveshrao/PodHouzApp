@@ -11,13 +11,11 @@ function SplashScreen({navigation}) {
         setIsLoad(true);
         navigation.navigate('LoginScreen')
      }, 3010);
-    
-    
 
     return (
         <View style={styles.container}>
            <Image style={{width:'70%',height:'30%'}}
-           source={require('../assets/logo.gif')} />
+           source={require('../Assets/logo.gif')} />
 
         </View>
     );

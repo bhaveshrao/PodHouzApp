@@ -1,44 +1,47 @@
 import React from 'react';
 import { View,Text,TouchableWithoutFeedback,Image,FlatList,TouchableOpacity} from 'react-native';
 
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
+
 const PotentialData = [
     {
       id: "1",
       title: "Faded",
       subTitle:"Alan Walker",
-      imageUserA: require('../assets/Home/potentialImage1.png')
+      imageUserA: require('../Assets/Home/potentialImage1.png')
     },
     {
       id: "2",
       title: "Press start",
       subTitle:"MDK",
-      imageUserA:require('../assets/Home/potentialImage2.png')
+      imageUserA:require('../Assets/Home/potentialImage2.png')
 
     },
     {
       id: "4",
       title: "Time Lapse",
       subTitle:"Alan Walker",
-      imageUserA:require('../assets/Home/potentialImage3.png')
+      imageUserA:require('../Assets/Home/potentialImage3.png')
     },
     {
         id: "5",
         title: "Faded",
         subTitle:"Alan Walker",
-        imageUserA: require('../assets/Home/potentialImage1.png')
+        imageUserA: require('../Assets/Home/potentialImage1.png')
       },
       {
         id: "6",
         title: "Press start",
         subTitle:"MDK",
-        imageUserA:require('../assets/Home/potentialImage2.png')
+        imageUserA:require('../Assets/Home/potentialImage2.png')
   
       },
       {
         id: "7",
         title: "Time Lapse",
         subTitle:"Alan Walker",
-        imageUserA:require('../assets/Home/potentialImage3.png')
+        imageUserA:require('../Assets/Home/potentialImage3.png')
       }
 ]
 
@@ -73,12 +76,12 @@ function EventDetailsScreen(navigation) {
                     <TouchableWithoutFeedback >
                                  <Image
                                     style={{width:15,height:15,left:'88%',top:'50%',position:'absolute'}}
-                                    source={require('../assets/notification.png')}
+                                    source={require('../Assets/notification.png')}
                                     />
                     </TouchableWithoutFeedback>
             </View>
             <Image style={{width:'100%',height:250,top:100,position:'absolute'}}
-             source={require('../assets/EventDetails/micBanner.png')}>
+             source={require('../Assets/EventDetails/micBanner.png')}>
             </Image>
             <Text style={{fontSize:25,fontWeight:'bold',color:'#263238',top:'48%',left:'7%',position:'absolute'}}>Debate For War</Text>
             <Text style={{fontSize:12,color:'#263238',top:'52%',left:'7%',position:'absolute'}}>Sun,May2022 07:30PM</Text>
@@ -97,7 +100,7 @@ function EventDetailsScreen(navigation) {
                                         height: 25,     
                                         margin : -5
                                     }}
-                                    source={require('../assets/Home/heart.png')}
+                                    source={require('../Assets/Home/heart.png')}
                                     resizeMode={'contain'}/>
                             </TouchableWithoutFeedback>
                             <Text style={{marginVertical:10}}> 2000 </Text>
@@ -111,7 +114,7 @@ function EventDetailsScreen(navigation) {
                                         top:'56%',
                                         left : '20%' 
                                     }}
-                                    source={require('../assets/Home/share.png')}
+                                    source={require('../Assets/Home/share.png')}
                                     resizeMode={'contain'}/>
              </TouchableWithoutFeedback>
              <TouchableWithoutFeedback >
@@ -124,7 +127,7 @@ function EventDetailsScreen(navigation) {
                                         top : '55%'
 
                                     }}
-                                    source={require('../assets/Home/noOneToOne.png')}
+                                    source={require('../Assets/Home/noOneToOne.png')}
                                     resizeMode={'contain'}/>
              </TouchableWithoutFeedback>
              <TouchableWithoutFeedback>
@@ -136,7 +139,7 @@ function EventDetailsScreen(navigation) {
                                     height:27,
                                     position :'absolute'
                                    }}
-                                   source={require('../assets/Home/debate.png')}
+                                   source={require('../Assets/Home/debate.png')}
                                    resizeMode={'contain'}/>
              </TouchableWithoutFeedback>
              <FlatList style={{height:'80%',width:'100%',flex:1,position:'absolute',marginTop:'125%',left:15,flex:1}} 

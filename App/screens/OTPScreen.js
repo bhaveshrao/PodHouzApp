@@ -214,7 +214,7 @@ function OTPScreen({ navigation}) {
      <ImageBackground
         resizeMode="cover"
         style={styles.background}
-         source={require('../assets/OTP/OTPBackground.png')}>
+         source={require('../Assets/OTP/OTPBackground.png')}>
         <Text style={styles.otpWithText}>OTP</Text>
 
         <KeyboardAvoidingView
@@ -224,7 +224,7 @@ function OTPScreen({ navigation}) {
         <View style={styles.container}> 
             <View style={styles.navigationContainer}>
                 < TouchableWithoutFeedback style={styles.backButton} onPress={() => navigation.goBack()}>
-                    <Image source={require('../assets/back.png')}>
+                    <Image source={require('../Assets/back.png')}>
                      </Image>
                 </TouchableWithoutFeedback > 
             </View>

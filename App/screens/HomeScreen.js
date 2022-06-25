@@ -11,25 +11,25 @@ const DATA = [
     {
       id: "1",
       titleA: "Counter Clock",
-      imageUserA: require('../assets/Home/smartTalkUser1.png')
+      imageUserA: require('../Assets/Home/smartTalkUser1.png')
     },
     {
       id: "2",
       titleA: "Dateline NBC",
-      imageUserA:require('../assets/Home/smartTalkUser2.png')
+      imageUserA:require('../Assets/Home/smartTalkUser2.png')
 
     },
     {
       id: "3",
       titleA: "A True Podcast",
-      imageUserA:require('../assets/Home/smartTalkUser3.png')
+      imageUserA:require('../Assets/Home/smartTalkUser3.png')
 
 
     },
     {
       id: "4",
       titleA: "Crime Junkie",
-      imageUserA:require('../assets/Home/smartTalkUser4.png')
+      imageUserA:require('../Assets/Home/smartTalkUser4.png')
 
     }
 ]
@@ -38,30 +38,32 @@ const PotentialData = [
       id: "1",
       title: "Faded",
       subTitle:"Alan Walker",
-      imageUserA: require('../assets/Home/potentialImage1.png')
+      imageUserA: require('../Assets/Home/potentialImage1.png')
     },
     {
       id: "2",
       title: "Press start",
       subTitle:"MDK",
-      imageUserA:require('../assets/Home/potentialImage2.png')
+      imageUserA:require('../Assets/Home/potentialImage2.png')
 
     },
     {
       id: "3",
       title: "Time Lapse",
       subTitle:"Alan Walker",
-      imageUserA:require('../assets/Home/potentialImage3.png')
+      imageUserA:require('../Assets/Home/potentialImage3.png')
     }
 ]
 function HomeScreen(navigation) {
 
     const renderItem = ({ item }) => (
+
+        
         <SmartTalkComponent
             imageUserSmartTalk = {item.imageUserA}
             name = {item.titleA}
-            playWhiteIcon = {require('../assets/Home/playWhite.png')}
-            waveIcon = {require('../assets/Home/wave.png')}
+            playWhiteIcon = {require('../Assets/Home/playWhite.png')}
+            waveIcon = {require('../Assets/Home/wave.png')}
         ></SmartTalkComponent>
       );
 
@@ -89,22 +91,22 @@ function HomeScreen(navigation) {
     return (
         <View style={styles.container}>
             <View style = {styles.topContainerView}>
-                <Image style={styles.greetingImage} source={require('../assets/Home/greeting.png')}/>
+                <Image style={styles.greetingImage} source={require('../Assets/Home/greeting.png')}/>
                 <Text style={styles.welcomeText}>Welcome Back,</Text>
             </View>
             <Text style={styles.nameText}>Nestor Jerez</Text>
-            <Image style={styles.userImage} source={require('../assets/Home/userImage.png')}/>
-            <Image style={styles.statusImage} source={require('../assets/Home/onlineIcon.png')}/>
+            <Image style={styles.userImage} source={require('../Assets/Home/userImage.png')}/>
+            <Image style={styles.statusImage} source={require('../Assets/Home/onlineIcon.png')}/>
             <View style={styles.rect}> 
         <ScrollView scrollEventThrottle={16} style={styles.scrollViewContainer} automaticallyAdjustContentInsets = {true}>
             <View style={ {height : 1870, width:'100%'}}>
               <SearchBar
-                source = {require('../assets/Home/Rectangle.png')}
+                source = {require('../Assets/Home/Rectangle.png')}
                 style={styles.searchBarStyle}
                 fontColor="#c6c6c6"
                 placeholder="Search here"
                 placeholderTextColor="#7F7F87"
-                searchIconImageSource={require('../assets/Home/Search.png')}
+                searchIconImageSource={require('../Assets/Home/Search.png')}
                 onChangeText={(text) => this.filterList(text)}
                 onSearchPress={() => console.log("Search Icon is pressed")}
                 // onClearPress={() => this.filterList("")}
@@ -113,23 +115,23 @@ function HomeScreen(navigation) {
                 <View style={styles.headContainerView}>
                     <View style={styles.userCounterContainer}>
                          <View style={styles.viewUserImageCounter}>
-                            <Image style={styles.counterImage} source={require('../assets/Home/user1.png')}></Image>
-                            <Image style={styles.counterImage} source={require('../assets/Home/user2.png')}></Image>
-                            <Image style={styles.counterImage} source={require('../assets/Home/user3.png')}></Image>
-                            <Image style={styles.counterImage} source={require('../assets/Home/user4.png')}></Image>
+                            <Image style={styles.counterImage} source={require('../Assets/Home/user1.png')}></Image>
+                            <Image style={styles.counterImage} source={require('../Assets/Home/user2.png')}></Image>
+                            <Image style={styles.counterImage} source={require('../Assets/Home/user3.png')}></Image>
+                            <Image style={styles.counterImage} source={require('../Assets/Home/user4.png')}></Image>
                             <Text style={styles.CounterText}>10</Text>
                             <Text numberOfLines={1} style={styles.CounterTextName}>Austin Counter Clock</Text>
                         </View>
                     </View>
                     <ImageBackground 
                     style={styles.soundBackgroundimage} 
-                    source={require('../assets/Home/micImage.png')}
+                    source={require('../Assets/Home/micImage.png')}
                     imageStyle={{ borderRadius: 15}}>
                         <View style={styles.liveButtonContainer}>
                             <TouchableWithoutFeedback >
                                 <Image
                                     style={styles.liveButoon}
-                                    source={require('../assets/Home/live.png')}
+                                    source={require('../Assets/Home/live.png')}
                                     resizeMode={'contain'}/>
                             </TouchableWithoutFeedback>
                             <TouchableWithoutFeedback>
@@ -140,7 +142,7 @@ function HomeScreen(navigation) {
                                     width:80,
                                     height:27
                                    }}
-                                   source={require('../assets/Home/debate.png')}
+                                   source={require('../Assets/Home/debate.png')}
                                    resizeMode={'contain'}/>
                             </TouchableWithoutFeedback>
                         </View>
@@ -150,7 +152,7 @@ function HomeScreen(navigation) {
                             <TouchableWithoutFeedback >
                                 <Image
                                     style={styles.likeButon}
-                                    source={require('../assets/Home/heart.png')}
+                                    source={require('../Assets/Home/heart.png')}
                                     resizeMode={'contain'}/>
                             </TouchableWithoutFeedback>
                             <Text> 2000 </Text>
@@ -159,7 +161,7 @@ function HomeScreen(navigation) {
                             <TouchableWithoutFeedback >
                                 <Image
                                     style={styles.chatButon}
-                                    source={require('../assets/Home/audioChat.png')}
+                                    source={require('../Assets/Home/audioChat.png')}
                                     resizeMode={'contain'}/>
                             </TouchableWithoutFeedback>
                             <Text style={styles.commentText}> 100 </Text>
@@ -167,13 +169,13 @@ function HomeScreen(navigation) {
                         <TouchableWithoutFeedback >
                                 <Image
                                     style={styles.shareButon}
-                                    source={require('../assets/Home/share.png')}
+                                    source={require('../Assets/Home/share.png')}
                                     resizeMode={'contain'}/>
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback >
                                 <Image
                                     style={styles.groupButon}
-                                    source={require('../assets/Home/noOneToOne.png')}
+                                    source={require('../Assets/Home/noOneToOne.png')}
                                     resizeMode={'contain'}/>
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback>
@@ -184,21 +186,21 @@ function HomeScreen(navigation) {
                                     left : 210,
                                     position : 'absolute'
                                 }}
-                                source={require('../assets/Home/Vector.png')}
+                                source={require('../Assets/Home/Vector.png')}
                                 resizeMode={'contain'}
                             />
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback >
                                 <Image
                                     style={styles.nooneButon}
-                                    source={require('../assets/Home/noone.png')}
+                                    source={require('../Assets/Home/noone.png')}
                                     resizeMode={'contain'}/>
                         </TouchableWithoutFeedback>
                         <View style={styles.audioContainer}>
                             <TouchableWithoutFeedback >
                                 <Image
                                     style={styles.audioButton}
-                                    source={require('../assets/Home/audio.png')}
+                                    source={require('../Assets/Home/audio.png')}
                                     resizeMode={'contain'}/>
                             </TouchableWithoutFeedback>
                             <Text style={styles.audioText}> 5 </Text>
@@ -213,13 +215,13 @@ function HomeScreen(navigation) {
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}>
                             <LeftToBeHeardComponent
-                                imageUri={require('../assets/Home/scrollImage1.png')}
+                                imageUri={require('../Assets/Home/scrollImage1.png')}
                                  name="The Holi Festival of Barsana India"
-                                 playIcon={require('../assets/Home/play.png')}/>
+                                 playIcon={require('../Assets/Home/play.png')}/>
                             <LeftToBeHeardComponent
-                                imageUri={require('../assets/Home/scrollImage2.png')}
+                                imageUri={require('../Assets/Home/scrollImage2.png')}
                                 name="Save Animals in Our Forest"
-                                playIcon={require('../assets/Home/play.png')}/>
+                                playIcon={require('../Assets/Home/play.png')}/>
                     </ScrollView>
                     </SafeAreaView>
 
@@ -263,7 +265,7 @@ function HomeScreen(navigation) {
                          <View style={styles.viewUserImageCounter}>
                              <Image
                                     style={{width:46,height:46}}
-                                    source={require('../assets/Home/Austin.png')}
+                                    source={require('../Assets/Home/Austin.png')}
                                     resizeMode={'contain'}/>
                             <View style={{height:50,width:'80%',left:10,justifyContent:'center'}}>
                                  <Text numberOfLines={1} style={{fontSize : 17, fontWeight : 'bold',left : 10,  width : 190}}>Austin</Text>
@@ -273,7 +275,7 @@ function HomeScreen(navigation) {
                     </View>
                     <ImageBackground 
                     style={styles.soundBackgroundimage} 
-                    source={require('../assets/Home/micImage.png')}
+                    source={require('../Assets/Home/micImage.png')}
                     imageStyle={{ borderRadius: 15}}>
                     </ImageBackground>
                     <View opacity={0.8} style={styles.bottomContainerView}>
@@ -293,7 +295,7 @@ function HomeScreen(navigation) {
                                         height: 25,     
                                         margin : -5
                                     }}
-                                    source={require('../assets/Home/heart.png')}
+                                    source={require('../Assets/Home/heart.png')}
                                     resizeMode={'contain'}/>
                             </TouchableWithoutFeedback>
                             <Text style={{marginVertical:10}}> 2000 </Text>
@@ -304,7 +306,7 @@ function HomeScreen(navigation) {
                                     style={{ top : 1,
                                         width : 30,
                                         height: 30}}
-                                    source={require('../assets/Home/headset.png')}
+                                    source={require('../Assets/Home/headset.png')}
                                     resizeMode={'contain'}/>
                             </TouchableWithoutFeedback>
                             <Text style={{marginTop : -1}}> 100 </Text>
@@ -315,7 +317,7 @@ function HomeScreen(navigation) {
                                     width : 140,
                                     height: 40, 
                                     left : 115   }}
-                                    source={require('../assets/Home/largeWave.png')}
+                                    source={require('../Assets/Home/largeWave.png')}
                                     resizeMode={'contain'}/>
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback >
@@ -326,7 +328,7 @@ function HomeScreen(navigation) {
                                         height: 45, 
                                         left : 265  
                                     }}
-                                    source={require('../assets/Home/bigPlay.png')}
+                                    source={require('../Assets/Home/bigPlay.png')}
                                     resizeMode={'contain'}/>
                         </TouchableWithoutFeedback>
                         <View style={styles.audioContainer}>
@@ -337,7 +339,7 @@ function HomeScreen(navigation) {
                                         width :40,
                                         height: 40,  
                                     }}
-                                    source={require('../assets/Home/moreV.png')}
+                                    source={require('../Assets/Home/moreV.png')}
                                     resizeMode={'contain'}/>
                             </TouchableWithoutFeedback>
                         </View>
@@ -350,7 +352,7 @@ function HomeScreen(navigation) {
                     <TouchableWithoutFeedback >
                                 <Image
                                     style={{width:65,height:65}}
-                                    source={require('../assets/Home/bigPlus.png')}
+                                    source={require('../Assets/Home/bigPlus.png')}
                                     resizeMode={'contain'}/>
                             </TouchableWithoutFeedback>
         </View>
